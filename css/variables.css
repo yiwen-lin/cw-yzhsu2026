@@ -1,0 +1,252 @@
+/**
+ * Design Tokens — 2026 天下有庠基金會
+ * 來源：Figma get_variable_defs
+ *   桌機 frame: 1:865
+ *   手機 frame: 10:1275
+ */
+
+:root {
+  /* ── Colors ─────────────────────────────────────────── */
+  --color-primary: #e5721c;
+  --color-secondary: #4edcdc;
+  --color-black: #000000;
+  --color-black-70: #000000b2;
+  --color-white: #ffffff;
+
+  /* ── Font Family ────────────────────────────────────── */
+  --font-family-base: "Noto Sans TC", sans-serif;
+
+  /* ── Font Weights ───────────────────────────────────── */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ── Font Sizes (raw tokens) ────────────────────────── */
+  --font-size-15: 15px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-22: 22px;
+  --font-size-25: 25px;
+  --font-size-28: 28px;
+  --font-size-30: 30px;
+  --font-size-42: 42px;
+  --font-size-45: 45px;
+
+  /* ── Line Heights (raw tokens) ──────────────────────── */
+  --line-height-24: 24px;
+  --line-height-25: 25px;
+  --line-height-27: 27px;
+  --line-height-28-8: 28.8px;
+  --line-height-32: 32px;
+  --line-height-40: 40px;
+  --line-height-42: 42px;
+  --line-height-45: 45px;
+
+  /* ── Letter Spacing ─────────────────────────────────── */
+  --letter-spacing-none: 0;
+  --letter-spacing-wide: 2px;
+
+  /* ── Typography: H1 (桌機 42px / 手機 28px) ───────── */
+  --font-size-h1: 42px;
+  --font-weight-h1: 600;
+  --line-height-h1: 42px;
+  --letter-spacing-h1: 0;
+
+  --font-size-h1-mobile: 28px;
+  --line-height-h1-mobile: 40px;
+
+  /* ── Typography: H2 ─────────────────────────────────── */
+  --font-size-h2: 30px;
+  --font-weight-h2: 500;
+  --line-height-h2: 45px;
+  --letter-spacing-h2: 0;
+
+  /* ── Typography: H3 ─────────────────────────────────── */
+  --font-size-h3: 22px;
+  --font-weight-h3: 500;
+  --line-height-h3: 32px;
+  --letter-spacing-h3: 0;
+
+  /* ── Typography: H5 ─────────────────────────────────── */
+  --font-size-h5: 16px;
+  --font-weight-h5: 400;
+  --line-height-h5: 27px;
+  --letter-spacing-h5: 0;
+
+  /* ── Typography: H6 ─────────────────────────────────── */
+  --font-size-h6: 15px;
+  --font-weight-h6: 400;
+  --line-height-h6: 25px;
+  --letter-spacing-h6: 2px;
+
+  /* ── Typography: Body (P) ───────────────────────────── */
+  --font-size-body: 18px;
+  --font-weight-body: 400;
+  --line-height-body: 28.8px;
+  --letter-spacing-body: 0;
+
+  /* ── Typography: Link ───────────────────────────────── */
+  --font-size-link: 16px;
+  --font-weight-link: 600;
+  --line-height-link: 24px;
+  --letter-spacing-link: 0;
+
+  /* ── Hero Main Title ────────────────────────────────── */
+  --font-size-hero-title: 100px;
+  --font-weight-hero-title: 700;
+  --line-height-hero-title: 100px;
+
+  /* ── School Card ────────────────────────────────────── */
+  --font-family-number: "Plus Jakarta Sans", sans-serif;
+  --font-size-card-date: 48px;
+  --radius-card: 10px;
+  --shadow-card: 2px 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-card-dark: 2px 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-btn: 0 0 8px rgba(0, 0, 0, 0.08);
+
+  /* ── Section 共用內容寬（about / speaker 桌機）────────── */
+  --width-section-content: 1100px;
+  --spacing-section-x: 170px;
+
+  /* ── Section About ──────────────────────────────────── */
+  --width-about-text: 458px;
+  --width-about-video: 604px;
+  --height-about-video: 340px;
+  --width-about-content: var(--width-section-content);
+  --size-play-icon: 44px;
+  --height-about-video-mobile: 197px;
+  --size-play-icon-mobile: 32px;
+  --size-play-icon-lg: 81px;
+
+  /* ── Section 裝飾圖 img-student（講師介紹標題附近）────── */
+  --width-deco-student: 212px;
+  --width-deco-student-mobile: 134px;
+  --top-deco-student: -21px;
+  --left-deco-student: 921px;
+  --top-deco-student-mobile: -57px;
+  --left-deco-student-mobile: 236px;
+
+  /* ── Section 裝飾圖 bionic limb / Silicon wafer ──────── */
+  --width-deco-bionic: 476px;
+  --top-deco-bionic: -192px;
+  --right-deco-bionic: -49px;
+  --rotate-deco-bionic: 10.8deg;
+  --width-deco-bionic-mobile: 277px;
+  --top-deco-bionic-mobile: -110px;
+  --right-deco-bionic-mobile: -59px;
+  --rotate-deco-bionic-mobile: 0deg;
+
+  --width-deco-wafer: 276px;
+  --top-deco-wafer: -79px;
+  --left-deco-wafer: -56px;
+  --rotate-deco-wafer: -20.73deg;
+
+  /* ── Section 裝飾圖 img-nanobot（深度報導）────────────── */
+  --width-deco-nanobot: 228px;
+  --top-deco-nanobot: 21px;
+  --left-deco-nanobot: 932px;
+  --width-deco-nanobot-mobile: 170px;
+  --top-deco-nanobot-mobile: -9px;
+  --left-deco-nanobot-mobile: 246px;
+
+  /* ── Section Speaker ────────────────────────────────── */
+  --width-speaker-content: var(--width-section-content);
+  --height-speaker-photo: 438px;
+  --size-slider-arrow-w: 30px;
+  --size-slider-arrow-h: 57px;
+  --size-slider-dot: 12px;
+  --size-slider-dot-mobile: 8px;
+  --size-slider-arrow-w-mobile: 20px;
+  --size-slider-arrow-h-mobile: 38px;
+  /* ── Page Container 漸層（Figma Container 1:866）── */
+  --color-container-bg-start: var(--color-primary);
+  --color-container-bg-mid: #f6d0b3;
+  --color-container-bg-end: var(--color-white);
+  --container-gradient-stop-mid: 16.83%;
+  /* bg2 1 底部背景圖（Figma 2:496 / 10:1335，1440×1390.5） */
+  --aspect-ratio-container-bg2: 1440 / 1390.5;
+  --rotate-container-bg2: 180deg;
+
+  /* ── Section Forum（論壇精華）────────────────────────── */
+  --width-forum-content: var(--width-section-content);
+  --aspect-ratio-video: 16 / 9;
+
+  /* ── Section Report（深度報導）────────────────────────── */
+  --width-report-content: var(--width-section-content);
+  --aspect-ratio-report-card: 4 / 3;
+  --size-slider-dot-report: 14px;
+  --shadow-report-card: 0 0 4px rgba(0, 0, 0, 0.1);
+  --color-report-dot: var(--color-white);
+  --opacity-report-dot: 0.35;
+  --opacity-report-dot-hover: 0.7;
+
+  /* ── Section Download（手冊下載）────────────────────────── */
+  --width-download-stage: 483px;
+  --height-download-stage: 468px;
+  --width-download-circle: 468px;
+  --left-download-circle: 8px;
+  --width-download-book: 483px;
+  --height-download-book: 303px;
+  --top-download-book: 45px;
+  --width-download-btn: 174px;
+  --top-download-btn: 359px;
+  --left-download-btn: 154px;
+  --width-download-stage-mobile: 339px;
+  --height-download-stage-mobile: 334px;
+  --width-download-circle-mobile: 329px;
+  --left-download-circle-mobile: 6px;
+  --width-download-book-mobile: 339px;
+  --height-download-book-mobile: 213px;
+  --top-download-book-mobile: 32px;
+  --top-download-btn-mobile: 275px;
+
+  /* ── Footer ─────────────────────────────────────────── */
+  --padding-footer-bottom: 40px;
+  --padding-footer-bottom-mobile: 30px;
+
+  /* ── Spacing ────────────────────────────────────────── */
+  --spacing-10: 10px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-26: 26px;
+  --spacing-28: 28px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+  --spacing-70: 70px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+  --spacing-130: 130px;
+  --spacing-190: 190px;
+  --spacing-210: 210px;
+  --spacing-275: 275px;
+  --spacing-350: 350px;
+
+  /* ── Stroke / Border Width ──────────────────────────── */
+  --stroke-width-sm: 0.8px;
+  --stroke-width-1: 1px;
+  --stroke-width-2: 2px;
+  --stroke-width-3: 3px;
+
+  /* ── Layout ─────────────────────────────────────────── */
+  --layout-width-max: 1296px;
+  --layout-height-section: 900px;
+
+  /* ── Header（桌機自適應）────────────────────────────── */
+  --width-header-logo-far-max: 235px;
+  --width-header-logo-far-min: 140px;
+  --width-header-logo-cw-max: 197px;
+  --width-header-logo-cw-min: 110px;
+  --width-nav-chars: 4.5;
+  --width-nav-item: calc(var(--width-nav-chars) * 1em + var(--spacing-10) * 2);
+  --width-nav-item-min: var(--width-nav-item);
+  --width-nav-list-max: calc(var(--width-nav-item) * 7);
+
+  /* ── Opacity ────────────────────────────────────────── */
+  --opacity-100: 100;
+}
