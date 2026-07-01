@@ -93,9 +93,29 @@
   --letter-spacing-link: 0;
 
   /* ── Hero Main Title ────────────────────────────────── */
-  --font-size-hero-title: 100px;
+  --font-size-hero-title: 92px;
   --font-weight-hero-title: 700;
-  --line-height-hero-title: 100px;
+  --line-height-hero-title: 92px;
+  --hero-title-offset-y: 15dvh;
+  --hero-title-mobile-top-ratio: 0.14;
+
+  /* ── Hero 裝飾圖 ── */
+  --rotate-deco-hero-dna: -8.48deg;
+  --width-deco-hero-dna: 426px;
+  --left-deco-hero-dna: -123px;
+  --top-deco-hero-dna: 25px;
+  --rotate-deco-hero-capsule-1: 33.42deg;
+  --rotate-deco-hero-capsule-2: -27.26deg;
+  --width-deco-hero-capsule-1: 107px;
+  --width-deco-hero-capsule-2: 49px;
+  --position-deco-capsule-right: 10%;
+  --position-deco-capsule-1-top: 10%;
+  --offset-deco-capsule-2-y: 12%;
+  --width-deco-hero-bionic: 444px;
+  --left-deco-hero-bionic: -109px;
+  --top-deco-hero-bionic: 375px;
+  --rotate-deco-hero-bionic: 142.12deg;
+  --rotate-deco-hero-microchip: 0deg;
 
   /* ── School Card ────────────────────────────────────── */
   --font-family-number: "Plus Jakarta Sans", sans-serif;
@@ -126,6 +146,9 @@
   --left-deco-student: 921px;
   --top-deco-student-mobile: -57px;
   --left-deco-student-mobile: 236px;
+  --duration-deco-student-sway: 2.5s;
+  --distance-deco-student-sway: 10px;
+  --distance-deco-student-sway-mobile: 6px;
 
   /* ── Section 裝飾圖 bionic limb / Silicon wafer ──────── */
   --width-deco-bionic: 476px;
@@ -141,6 +164,8 @@
   --top-deco-wafer: -79px;
   --left-deco-wafer: -56px;
   --rotate-deco-wafer: -20.73deg;
+  --duration-deco-rotate-sway: 3s;
+  --rotate-deco-swing: 6deg;
 
   /* ── Section 裝飾圖 img-nanobot（深度報導）────────────── */
   --width-deco-nanobot: 228px;
@@ -149,6 +174,7 @@
   --width-deco-nanobot-mobile: 170px;
   --top-deco-nanobot-mobile: -9px;
   --left-deco-nanobot-mobile: 246px;
+  --rotate-deco-nanobot: 0deg;
 
   /* ── Section Speaker ────────────────────────────────── */
   --width-speaker-content: var(--width-section-content);
@@ -167,6 +193,7 @@
   /* bg2 1 底部背景圖（Figma 2:496 / 10:1335，1440×1390.5） */
   --aspect-ratio-container-bg2: 1440 / 1390.5;
   --rotate-container-bg2: 180deg;
+  --container-bg2-report-start-ratio: 0.5;
 
   /* ── Section Forum（論壇精華）────────────────────────── */
   --width-forum-content: var(--width-section-content);
@@ -234,10 +261,22 @@
   --stroke-width-3: 3px;
 
   /* ── Layout ─────────────────────────────────────────── */
+  /* Header 手機版：寬度 < 1180px（@media 使用 max-width: 1179px） */
+  --breakpoint-header-mobile: 1180px;
+  --breakpoint-header-mobile-max: 1179px;
+  /* 全站手機／桌機分界：寬度 < 1024px（@media 使用 max-width: 1023px） */
+  --breakpoint-mobile: 1024px;
+  --breakpoint-mobile-max: 1023px;
   --layout-width-max: 1296px;
   --layout-height-section: 900px;
 
   /* ── Header（桌機自適應）────────────────────────────── */
+  --shadow-header: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-nav-dropdown: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --height-header-desktop: 94px;
+  --height-header-mobile: 57px;
+  --scroll-anchor-offset: var(--spacing-24);
+  --height-mobile-nav-sublist-max: 260px;
   --width-header-logo-far-max: 235px;
   --width-header-logo-far-min: 140px;
   --width-header-logo-cw-max: 197px;

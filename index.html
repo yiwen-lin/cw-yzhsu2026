@@ -32,12 +32,37 @@
       <!-- 桌機導覽列 -->
       <nav class="site-header__nav" aria-label="主選單">
         <ul class="nav__list">
-          <li class="nav__item"><a href="#hero-section"    class="nav__link"><span class="nav__link-line">探索興趣</span><span class="nav__link-line">想像未來</span></a></li>
+          <li class="nav__item"><a href="#about-section"    class="nav__link"><span class="nav__link-line">探索興趣</span><span class="nav__link-line">想像未來</span></a></li>
           <li class="nav__item"><a href="#speaker-section" class="nav__link"><span class="nav__link-line">講師</span><span class="nav__link-line">介紹</span></a></li>
-          <li class="nav__item"><a href="#speaker-section" class="nav__link"><span class="nav__link-line">講座</span><span class="nav__link-line">場次</span></a></li>
+          <li class="nav__item"><a href="#school-section" class="nav__link"><span class="nav__link-line">講座</span><span class="nav__link-line">場次</span></a></li>
           <li class="nav__item"><a href="#forum-section"   class="nav__link"><span class="nav__link-line">論壇</span><span class="nav__link-line">精華</span></a></li>
           <li class="nav__item"><a href="#report-section"  class="nav__link"><span class="nav__link-line">深度</span><span class="nav__link-line">報導</span></a></li>
-          <li class="nav__item"><a href="#hero-section"    class="nav__link"><span class="nav__link-line">歷年</span><span class="nav__link-line">活動</span></a></li>
+          <li class="nav__item nav__item--dropdown">
+            <button
+              type="button"
+              class="nav__link nav__link--dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="nav-dropdown-years"
+            >
+              <span class="nav__link-line">歷年</span>
+              <span class="nav__link-line">活動</span>
+            </button>
+            <ul class="nav__dropdown" id="nav-dropdown-years" role="menu" aria-label="歷年活動">
+              <li role="none">
+                <a href="https://web.cheers.com.tw/event/imc/2025yzhsu/index.html" class="nav__dropdown-link" role="menuitem" target="_blank" rel="noopener noreferrer">2025</a>
+              </li>
+              <li role="none">
+                <a href="https://web.cheers.com.tw/event/imc/2024yzhsu/index.html" class="nav__dropdown-link" role="menuitem" target="_blank" rel="noopener noreferrer">2024</a>
+              </li>
+              <li role="none">
+                <a href="https://web.cheers.com.tw/event/yzhsu/index.html" class="nav__dropdown-link" role="menuitem" target="_blank" rel="noopener noreferrer">2023</a>
+              </li>
+              <li role="none">
+                <a href="https://web.cheers.com.tw/event/2022yzhsu/index.html" class="nav__dropdown-link" role="menuitem" target="_blank" rel="noopener noreferrer">2022</a>
+              </li>
+            </ul>
+          </li>
           <li class="nav__item"><a href="#download-section" class="nav__link"><span class="nav__link-line">手冊</span><span class="nav__link-line">下載</span></a></li>
         </ul>
       </nav>
@@ -69,7 +94,24 @@
         <li><a href="#speaker-section" class="mobile-nav__link">講座場次</a></li>
         <li><a href="#forum-section"   class="mobile-nav__link">論壇精華</a></li>
         <li><a href="#report-section"  class="mobile-nav__link">深度報導</a></li>
-        <li><a href="#hero-section"    class="mobile-nav__link">歷年活動</a></li>
+        <li class="mobile-nav__item mobile-nav__item--group">
+          <button
+            type="button"
+            class="mobile-nav__toggle"
+            id="mobile-nav-years-toggle"
+            aria-expanded="false"
+            aria-controls="mobile-nav-years"
+          >
+            <span class="mobile-nav__toggle-text">歷年活動</span>
+            <span class="mobile-nav__toggle-icon" aria-hidden="true"></span>
+          </button>
+          <ul class="mobile-nav__sublist" id="mobile-nav-years" aria-hidden="true">
+            <li><a href="https://mkt.cw.com.tw/yzhsu2025/" class="mobile-nav__link mobile-nav__link--sub" target="_blank" rel="noopener noreferrer">2025</a></li>
+            <li><a href="https://mkt.cw.com.tw/yzhsu2024/" class="mobile-nav__link mobile-nav__link--sub" target="_blank" rel="noopener noreferrer">2024</a></li>
+            <li><a href="https://mkt.cw.com.tw/yzhsu2023/" class="mobile-nav__link mobile-nav__link--sub" target="_blank" rel="noopener noreferrer">2023</a></li>
+            <li><a href="https://mkt.cw.com.tw/yzhsu2022/" class="mobile-nav__link mobile-nav__link--sub" target="_blank" rel="noopener noreferrer">2022</a></li>
+          </ul>
+        </li>
         <li><a href="#download-section" class="mobile-nav__link">手冊下載</a></li>
       </ul>
     </nav>
@@ -83,7 +125,7 @@
 
       <!-- 背景圖（手機版換圖） -->
       <picture>
-        <source media="(max-width: 768px)" srcset="assets/images/hero-bg-mobile.jpg">
+        <source media="(max-width: 1023px)" srcset="assets/images/hero-bg-mobile.jpg">
         <img
           src="assets/images/hero-bg.jpg"
           alt=""
@@ -100,7 +142,8 @@
       <img src="assets/images/deco-microchip.png"           alt="" class="hero-deco hero-deco--microchip" aria-hidden="true">
 
       <!-- 主視覺標題群 -->
-      <div class="hero-section__title-group" data-animate="fadeInDown">
+      <div class="hero-section__title-group">
+        <div class="hero-section__title-inner" data-animate="fadeInDown">
         <img
           src="assets/images/hero-en-title.png"
           alt="DISCOVER · IMAGINE · INNOVATE"
@@ -114,10 +157,11 @@
           alt="探索興趣・想像未來"
           class="hero-section__sub-title"
         >
+        </div>
       </div>
 
       <!-- 合作校園 -->
-      <div class="school-section">
+      <div id="school-section" class="school-section">
         <div class="section-title">
           <img src="assets/images/icon-diamond-left.svg"  alt="" aria-hidden="true" class="section-title__icon">
           <h2 class="section-title__text">合作校園</h2>

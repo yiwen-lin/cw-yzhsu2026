@@ -2,7 +2,7 @@
 
 **Figma 檔案**：aNgdl8sGqzlFF205DjXcIt  
 **設計基準**：桌機 1440px / 手機 390px  
-**RWD 斷點**：`@media (max-width: 768px)`  
+**RWD 斷點**：寬度 < 1024px（`@media (max-width: 1023px)`）  
 **技術棧**：純 HTML5 + CSS3 + vanilla JS（輪播互動）
 
 ---

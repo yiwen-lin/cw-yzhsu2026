@@ -1,6 +1,6 @@
 /* ================================================================
    有庠創新論壇 — style.css
-   桌機基準：1440px  /  手機：390px（@media max-width: 768px）
+   桌機基準：1440px  /  手機：390px（寬度 < 1024px，@media max-width: 1023px）
    所有數值請使用 variables.css 的 CSS 變數，禁止寫死
    ================================================================ */
 
@@ -11,7 +11,7 @@
 }
 
 /* 各元素動畫時長 */
-.hero-section__title-group {
+.hero-section__title-inner {
   --animate-duration: 0.9s;
 }
 
@@ -40,6 +40,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--height-header-desktop) + var(--scroll-anchor-offset));
   overflow-x: hidden;
 }
 
@@ -75,8 +76,17 @@ a {
   left: 0;
   width: 100%;
   height: 94px;
-  background-color: var(--color-white);
+  background-color: transparent;
+  box-shadow: none;
   z-index: 100;
+  transition:
+    background-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.site-header--scrolled {
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-header);
 }
 
 .site-header__inner {
@@ -132,6 +142,7 @@ a {
   min-width: 0;
   max-width: var(--width-nav-list-max);
   justify-content: flex-end;
+  overflow: visible;
 }
 
 .nav__item {
@@ -139,6 +150,55 @@ a {
   width: var(--width-nav-item);
   min-width: var(--width-nav-item-min);
   max-width: var(--width-nav-item);
+}
+
+.nav__item--dropdown {
+  position: relative;
+}
+
+.nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: var(--spacing-10) 0;
+  list-style: none;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-nav-dropdown);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(calc(-1 * var(--spacing-10)));
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.25s ease;
+  z-index: 10;
+}
+
+.nav__item--dropdown:hover .nav__dropdown,
+.nav__item--dropdown:focus-within .nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav__dropdown-link {
+  display: block;
+  padding: var(--spacing-10) var(--spacing-16);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-link);
+  font-weight: var(--font-weight-link);
+  line-height: var(--line-height-link);
+  color: var(--color-black-70);
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.nav__dropdown-link:hover,
+.nav__dropdown-link:focus-visible {
+  color: var(--color-primary);
 }
 
 .nav__link {
@@ -157,6 +217,12 @@ a {
   color: var(--color-black-70);
   text-align: center;
   transition: color 0.2s ease;
+}
+
+button.nav__link {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .nav__link-line {
@@ -185,8 +251,8 @@ a {
   position: relative;
   width: 100%;
   overflow: hidden;
-  /* 94px 抵消 fixed header 高度 */
-  padding-top: 94px;
+  /* 抵消 fixed header 高度 */
+  padding-top: var(--height-header-desktop);
 }
 
 /* ── 背景圖 ── */
@@ -210,37 +276,39 @@ a {
 
 /* DNA 雙螺旋 */
 .hero-deco--dna {
-  width: 426px;
-  left: -123px;
-  top: 60px;  /* 94px header offset + (-34px) in design ≈ 60px */
-  transform: rotate(-8.48deg);
+  width: var(--width-deco-hero-dna);
+  left: var(--left-deco-hero-dna);
+  top: var(--top-deco-hero-dna);
+  transform: rotate(var(--rotate-deco-hero-dna));
   transform-origin: center;
 }
 
 /* 膠囊藥丸 1（右上角，較大） */
 .hero-deco--capsule-1 {
-  width: 107px;
-  left: 1210px;
-  top: 203px;  /* 94px + 109px */
-  transform: rotate(33.42deg);
+  width: clamp(60px, 7.4vw, var(--width-deco-hero-capsule-1));
+  right: var(--position-deco-capsule-right);
+  top: var(--position-deco-capsule-1-top);
+  left: auto;
+  transform: rotate(var(--rotate-deco-hero-capsule-1));
   transform-origin: center;
 }
 
 /* 膠囊藥丸 2（右上角，較小） */
 .hero-deco--capsule-2 {
-  width: 49px;
-  left: 1215px;
-  top: 392px;  /* 94px + 298px */
-  transform: rotate(-27.26deg);
+  width: clamp(32px, 3.4vw, var(--width-deco-hero-capsule-2));
+  right: var(--position-deco-capsule-right);
+  top: calc(var(--position-deco-capsule-1-top) + var(--offset-deco-capsule-2-y));
+  left: auto;
+  transform: rotate(var(--rotate-deco-hero-capsule-2));
   transform-origin: center;
 }
 
 /* 仿生手臂 */
 .hero-deco--bionic {
-  width: 444px;
-  left: -109px;
-  top: 331px;  /* 94px + 237px */
-  transform: rotate(142.12deg) scaleY(-1);
+  width: var(--width-deco-hero-bionic);
+  left: var(--left-deco-hero-bionic);
+  top: var(--top-deco-hero-bionic);
+  transform: rotate(var(--rotate-deco-hero-bionic)) scaleY(-1);
   transform-origin: center;
 }
 
@@ -260,13 +328,23 @@ a {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 829px;
-  padding: var(--spacing-80) 0 131px;
+  min-height: calc(100vh - var(--height-header-desktop));
+  min-height: calc(100dvh - var(--height-header-desktop));
+  padding: var(--spacing-80) var(--spacing-20);
+  box-sizing: border-box;
+}
+
+.hero-section__title-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: var(--spacing-50);
+  width: 100%;
+  margin-top: calc(-1 * var(--hero-title-offset-y));
 }
 
 .hero-section__en-title {
-  width: 498px;
+  width: 450px;
   height: auto;
 }
 
@@ -289,7 +367,7 @@ a {
 }
 
 .hero-section__sub-title {
-  width: 394px;
+  width: 350px;
   height: auto;
 }
 
@@ -635,7 +713,7 @@ a {
 
 .section-about {
   width: 100%;
-  padding: var(--spacing-100) var(--spacing-section-x);
+  padding: var(--spacing-100) clamp(var(--spacing-20), 5vw, var(--spacing-section-x));
 }
 
 .section-about__inner {
@@ -656,6 +734,7 @@ a {
 .section-about__content {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
   gap: var(--spacing-30);
   width: 100%;
 }
@@ -665,8 +744,10 @@ a {
   flex-direction: column;
   align-items: flex-start;
   gap: var(--spacing-40);
-  width: var(--width-about-text);
-  flex-shrink: 0;
+  flex: 1 1 var(--width-about-text);
+  width: auto;
+  min-width: min(100%, var(--width-about-text));
+  max-width: var(--width-about-text);
 }
 
 .section-about__desc {
@@ -678,8 +759,12 @@ a {
 }
 
 .section-about__video {
-  width: var(--width-about-video);
-  height: var(--height-about-video);
+  flex: 1 1 var(--width-about-video);
+  width: auto;
+  min-width: min(100%, var(--width-about-video));
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: var(--aspect-ratio-video);
 }
 
 /* ── Video Player 大尺寸（speaker / forum 主影片） ── */
@@ -707,6 +792,28 @@ a {
 }
 
 /* ── Section 裝飾圖 ── */
+@keyframes deco-student-sway {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(var(--distance-deco-student-sway));
+  }
+}
+
+@keyframes deco-rotate-sway {
+  0%,
+  100% {
+    transform: rotate(calc(var(--deco-base-rotate) - var(--rotate-deco-swing)));
+  }
+
+  50% {
+    transform: rotate(calc(var(--deco-base-rotate) + var(--rotate-deco-swing)));
+  }
+}
+
 .section-deco {
   position: absolute;
   pointer-events: none;
@@ -718,33 +825,51 @@ a {
   height: auto;
   left: var(--left-deco-student);
   top: var(--top-deco-student);
+  animation: deco-student-sway var(--duration-deco-student-sway) ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-deco--student,
+  .section-deco--bionic,
+  .section-deco--wafer,
+  .section-deco--nanobot {
+    animation: none;
+  }
 }
 
 .section-deco--bionic {
+  --deco-base-rotate: var(--rotate-deco-bionic);
   width: var(--width-deco-bionic);
   height: auto;
   left: auto;
   right: var(--right-deco-bionic);
   top: var(--top-deco-bionic);
-  transform: rotate(var(--rotate-deco-bionic));
+  transform: rotate(var(--deco-base-rotate));
   transform-origin: right center;
+  animation: deco-rotate-sway var(--duration-deco-rotate-sway) ease-in-out infinite alternate;
 }
 
 .section-deco--wafer {
+  --deco-base-rotate: var(--rotate-deco-wafer);
   width: var(--width-deco-wafer);
   height: auto;
   left: var(--left-deco-wafer);
   right: auto;
   top: var(--top-deco-wafer);
-  transform: rotate(var(--rotate-deco-wafer));
+  transform: rotate(var(--deco-base-rotate));
   transform-origin: left center;
+  animation: deco-rotate-sway var(--duration-deco-rotate-sway) ease-in-out infinite alternate;
 }
 
 .section-deco--nanobot {
+  --deco-base-rotate: var(--rotate-deco-nanobot);
   width: var(--width-deco-nanobot);
   height: auto;
   left: var(--left-deco-nanobot);
   top: var(--top-deco-nanobot);
+  transform: rotate(var(--deco-base-rotate));
+  transform-origin: center center;
+  animation: deco-rotate-sway var(--duration-deco-rotate-sway) ease-in-out infinite alternate;
 }
 
 .section-speaker__inner {
@@ -1316,6 +1441,30 @@ a {
   top: var(--top-download-btn);
   left: var(--left-download-btn);
   z-index: 2;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.download-visual__btn:hover,
+.download-visual__btn:focus-visible {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  filter: none;
+}
+
+.download-visual__btn:hover .btn__text,
+.download-visual__btn:focus-visible .btn__text {
+  color: var(--color-white);
+}
+
+.download-visual__btn .btn__arrow {
+  transition: filter 0.2s ease;
+}
+
+.download-visual__btn:hover .btn__arrow,
+.download-visual__btn:focus-visible .btn__arrow {
+  filter: brightness(0) invert(1);
 }
 
 /* ================================================================
@@ -1382,16 +1531,12 @@ a {
 }
 
 /* ================================================================
-   5. MEDIA QUERIES — 手機版（390px，@media max-width: 768px）
+   4-b. HEADER 手機版（寬度 < 1180px，max-width: 1179px）
    ================================================================ */
 
-@media (max-width: 768px) {
-
-  /* ════════════════════════════════════════
-     Header
-     ════════════════════════════════════════ */
+@media (max-width: 1179px) {
   .site-header {
-    height: 57px;
+    height: var(--height-header-mobile);
   }
 
   .site-header__inner {
@@ -1407,12 +1552,13 @@ a {
     width: 110px;
   }
 
-  /* 桌機導覽列隱藏 */
-  .site-header__nav {
+  .site-header__nav,
+  .nav__list,
+  .nav__item,
+  .nav__dropdown {
     display: none;
   }
 
-  /* ── 漢堡按鈕 ── */
   .hamburger {
     display: flex;
     flex-direction: column;
@@ -1436,7 +1582,6 @@ a {
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
-  /* X 形態（開啟時） */
   .hamburger.is-open .hamburger__line:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
@@ -1450,28 +1595,78 @@ a {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* ── 手機下拉選單 ── */
   .mobile-nav {
     display: block;
     position: absolute;
-    top: 57px;
+    top: var(--height-header-mobile);
     left: 0;
     width: 100%;
     background-color: var(--color-white);
     border-top: var(--stroke-width-1) solid rgba(0, 0, 0, 0.06);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    /* 預設收起 */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
 
   .mobile-nav.is-open {
-    max-height: 480px;
+    max-height: calc(100vh - var(--height-header-mobile));
+    max-height: calc(100dvh - var(--height-header-mobile));
+    overflow-y: auto;
   }
 
   .mobile-nav__list {
     padding: var(--spacing-10) 0;
+  }
+
+  .mobile-nav__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--spacing-16) var(--spacing-20);
+    border: none;
+    border-bottom: var(--stroke-width-1) solid rgba(0, 0, 0, 0.05);
+    background: none;
+    cursor: pointer;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-link);
+    font-weight: var(--font-weight-link);
+    line-height: var(--line-height-link);
+    color: var(--color-black-70);
+    text-align: left;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .mobile-nav__toggle:hover,
+  .mobile-nav__toggle:active {
+    color: var(--color-primary);
+    background-color: rgba(229, 114, 28, 0.04);
+  }
+
+  .mobile-nav__toggle-icon {
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    border-right: var(--stroke-width-2) solid currentColor;
+    border-bottom: var(--stroke-width-2) solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+  }
+
+  .mobile-nav__item--group.is-expanded .mobile-nav__toggle-icon {
+    transform: rotate(-135deg);
+  }
+
+  .mobile-nav__sublist {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-nav__item--group.is-expanded .mobile-nav__sublist {
+    max-height: var(--height-mobile-nav-sublist-max);
   }
 
   .mobile-nav__link {
@@ -1492,27 +1687,67 @@ a {
     background-color: rgba(229, 114, 28, 0.04);
   }
 
-  .mobile-nav__list li:last-child .mobile-nav__link {
+  .mobile-nav__link--sub {
+    padding-left: var(--spacing-40);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .mobile-nav__item--group {
     border-bottom: none;
   }
+
+  .mobile-nav__item--group.is-expanded .mobile-nav__toggle {
+    color: var(--color-primary);
+  }
+
+  .mobile-nav__item--group .mobile-nav__sublist li:last-child .mobile-nav__link {
+    border-bottom: none;
+  }
+
+  .mobile-nav__list > li:last-child .mobile-nav__link {
+    border-bottom: none;
+  }
+
+  /* 配合手機版 header 高度，避免 hero 頂部留白過大 */
+  .hero-section {
+    padding-top: var(--height-header-mobile);
+  }
+
+  html {
+    scroll-padding-top: calc(var(--height-header-mobile) + var(--scroll-anchor-offset));
+  }
+}
+
+/* ================================================================
+   5. MEDIA QUERIES — 手機版（390px，寬度 < 1024px）
+   ================================================================ */
+
+@media (max-width: 1023px) {
 
   /* ════════════════════════════════════════
      Hero Section
      ════════════════════════════════════════ */
-  .hero-section {
-    padding-top: 57px;
-  }
-
   /* 手機版裝飾圖全部隱藏（視覺效果已包含在 hero-bg-mobile.jpg 內） */
   .hero-deco {
     display: none;
   }
 
-  /* ── 主視覺標題群 ── */
-  /* pt-190 → 因 fixed header 57px，實際用 190px（含 header 偏移） */
+  /* ── 主視覺標題群：可視高度上方約 30% ── */
   .hero-section__title-group {
-    height: auto;
-    padding: var(--spacing-190) var(--spacing-20) var(--spacing-350);
+    justify-content: flex-start;
+    min-height: calc(100vh - var(--height-header-mobile));
+    min-height: calc(100dvh - var(--height-header-mobile));
+    padding: 0 var(--spacing-20);
+  }
+
+  .hero-section__title-inner {
+    margin-top: 0;
+    padding-top: calc(
+      (100vh - var(--height-header-mobile)) * var(--hero-title-mobile-top-ratio)
+    );
+    padding-top: calc(
+      (100dvh - var(--height-header-mobile)) * var(--hero-title-mobile-top-ratio)
+    );
     gap: var(--spacing-20);
   }
 
@@ -1591,13 +1826,19 @@ a {
 
   .section-about__text {
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     align-items: center;
     gap: var(--spacing-30);
   }
 
   .section-about__video {
+    flex: none;
     width: 100%;
-    height: var(--height-about-video-mobile);
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: var(--aspect-ratio-video);
   }
 
   .section-about__video .play-icon {
@@ -1764,15 +2005,17 @@ a {
     width: var(--width-deco-student-mobile);
     left: var(--left-deco-student-mobile);
     top: var(--top-deco-student-mobile);
+    --distance-deco-student-sway: var(--distance-deco-student-sway-mobile);
   }
 
   /* img-bionic limb：貼齊螢幕右緣（手機 277×177） */
   .section-deco--bionic {
+    --deco-base-rotate: var(--rotate-deco-bionic-mobile);
     width: var(--width-deco-bionic-mobile);
     left: auto;
     right: var(--right-deco-bionic-mobile);
     top: var(--top-deco-bionic-mobile);
-    transform: rotate(var(--rotate-deco-bionic-mobile));
+    transform: rotate(var(--deco-base-rotate));
     transform-origin: right center;
   }
 
@@ -1786,6 +2029,14 @@ a {
     width: var(--width-deco-nanobot-mobile);
     left: var(--left-deco-nanobot-mobile);
     top: var(--top-deco-nanobot-mobile);
+  }
+
+  /* ════════════════════════════════════════
+     Page Container bg2（手機：自 report 區塊後半段起）
+     ════════════════════════════════════════ */
+  .page-container__bg-wrap {
+    aspect-ratio: unset;
+    height: auto;
   }
 
   /* ════════════════════════════════════════
@@ -1821,6 +2072,7 @@ a {
   .report-slider__track .slider-arrow__icon {
     width: var(--size-slider-arrow-w-mobile);
     height: var(--size-slider-arrow-h-mobile);
+    filter: brightness(0) invert(1);
   }
 
   .report-slider__viewport {

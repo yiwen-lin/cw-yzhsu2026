@@ -2,11 +2,105 @@
    有庠創新論壇 — main.js
    ================================================================ */
 
+/* ── Header 捲動後顯示白底 ─────────────────────────────────── */
+(function () {
+  var header = document.querySelector('.site-header');
+  var hero = document.getElementById('hero-section');
+  if (!header) return;
+
+  function getScrollThreshold() {
+    if (!hero) return 0;
+    return hero.offsetHeight / 3;
+  }
+
+  function updateHeaderScroll() {
+    header.classList.toggle('site-header--scrolled', window.scrollY > getScrollThreshold());
+  }
+
+  updateHeaderScroll();
+  window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+  window.addEventListener('resize', updateHeaderScroll, { passive: true });
+})();
+
+/* ── 手機版 container-bg2：自 report-section 後半段起 ─────── */
+(function () {
+  var MOBILE_MQ = window.matchMedia('(max-width: 1023px)');
+  var container = document.querySelector('.page-container');
+  var bgWrap = document.querySelector('.page-container__bg-wrap');
+  var report = document.getElementById('report-section');
+  if (!container || !bgWrap || !report) return;
+
+  function getStartRatio() {
+    var value = getComputedStyle(document.documentElement)
+      .getPropertyValue('--container-bg2-report-start-ratio')
+      .trim();
+    var ratio = parseFloat(value);
+    return Number.isFinite(ratio) ? ratio : 0.5;
+  }
+
+  function clearMobileBgPosition() {
+    bgWrap.style.removeProperty('top');
+    bgWrap.style.removeProperty('height');
+  }
+
+  function getTopWithinContainer(el, ancestor) {
+    var top = 0;
+    var node = el;
+
+    while (node && node !== ancestor) {
+      top += node.offsetTop;
+      node = node.offsetParent;
+    }
+
+    return top;
+  }
+
+  function updateMobileBgPosition() {
+    if (!MOBILE_MQ.matches) {
+      clearMobileBgPosition();
+      return;
+    }
+
+    var reportInner = report.querySelector('.section-report__inner') || report;
+    var innerTop = getTopWithinContainer(reportInner, container);
+    var startTop = innerTop + reportInner.offsetHeight * getStartRatio();
+    bgWrap.style.top = startTop + 'px';
+    bgWrap.style.removeProperty('height');
+  }
+
+  updateMobileBgPosition();
+  window.addEventListener('resize', updateMobileBgPosition);
+  window.addEventListener('load', updateMobileBgPosition);
+
+  if (typeof ResizeObserver !== 'undefined') {
+    var observer = new ResizeObserver(updateMobileBgPosition);
+    var reportInner = report.querySelector('.section-report__inner');
+    observer.observe(container);
+    observer.observe(report);
+    if (reportInner) observer.observe(reportInner);
+  }
+
+  if (MOBILE_MQ.addEventListener) {
+    MOBILE_MQ.addEventListener('change', updateMobileBgPosition);
+  }
+})();
+
 /* ── 漢堡選單 ─────────────────────────────────────────────── */
 (function () {
   const btn = document.getElementById('hamburger-btn');
   const nav = document.getElementById('mobile-nav');
   if (!btn || !nav) return;
+
+  const yearsGroup = nav.querySelector('.mobile-nav__item--group');
+  const yearsToggle = document.getElementById('mobile-nav-years-toggle');
+  const yearsSublist = document.getElementById('mobile-nav-years');
+
+  function closeYearsGroup() {
+    if (!yearsGroup) return;
+    yearsGroup.classList.remove('is-expanded');
+    if (yearsToggle) yearsToggle.setAttribute('aria-expanded', 'false');
+    if (yearsSublist) yearsSublist.setAttribute('aria-hidden', 'true');
+  }
 
   function openMenu() {
     btn.classList.add('is-open');
@@ -20,12 +114,22 @@
     nav.classList.remove('is-open');
     btn.setAttribute('aria-expanded', 'false');
     nav.setAttribute('aria-hidden', 'true');
+    closeYearsGroup();
   }
 
   btn.addEventListener('click', function (e) {
     e.stopPropagation();
     btn.classList.contains('is-open') ? closeMenu() : openMenu();
   });
+
+  if (yearsToggle && yearsGroup && yearsSublist) {
+    yearsToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var expanded = yearsGroup.classList.toggle('is-expanded');
+      yearsToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      yearsSublist.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+    });
+  }
 
   nav.querySelectorAll('.mobile-nav__link').forEach(function (link) {
     link.addEventListener('click', closeMenu);
@@ -138,7 +242,7 @@
 
 /* ── 輪播邏輯 ─────────────────────────────────────────────── */
 (function () {
-  var MOBILE_MQ = window.matchMedia('(max-width: 768px)');
+  var MOBILE_MQ = window.matchMedia('(max-width: 1023px)');
 
   var SLIDER_CONFIG = {
     speaker: {
