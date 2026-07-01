@@ -8,6 +8,7 @@
 :root {
   /* ── Colors ─────────────────────────────────────────── */
   --color-primary: #e5721c;
+  --filter-icon-primary: brightness(0) saturate(100%) invert(54%) sepia(98%) saturate(749%) hue-rotate(346deg) brightness(95%) contrast(91%);
   --color-secondary: #4edcdc;
   --color-black: #000000;
   --color-black-70: #000000b2;
@@ -127,9 +128,11 @@
 
   /* ── Section 共用內容寬（about / speaker 桌機）────────── */
   --width-section-content: 1100px;
-  --spacing-section-x: 170px;
+  --spacing-section-x: 100px;
 
   /* ── Section About ──────────────────────────────────── */
+  --ratio-about-text: 458;
+  --ratio-about-video: 604;
   --width-about-text: 458px;
   --width-about-video: 604px;
   --height-about-video: 340px;
@@ -192,7 +195,9 @@
   --container-gradient-stop-mid: 16.83%;
   /* bg2 1 底部背景圖（Figma 2:496 / 10:1335，1440×1390.5） */
   --aspect-ratio-container-bg2: 1440 / 1390.5;
+  --ratio-container-bg2-h-w: 0.965625;
   --rotate-container-bg2: 180deg;
+  --extend-container-bg2-up: 80px;
   --container-bg2-report-start-ratio: 0.5;
 
   /* ── Section Forum（論壇精華）────────────────────────── */
