@@ -99,6 +99,7 @@
   --line-height-hero-title: 92px;
   --hero-title-offset-y: 15dvh;
   --hero-title-mobile-top-ratio: 0.14;
+  --object-position-hero-bg-ipad-y: 22%;
 
   /* ── Hero 裝飾圖 ── */
   --rotate-deco-hero-dna: -8.48deg;

@@ -2,28 +2,29 @@
 
 **Figma 檔案**：aNgdl8sGqzlFF205DjXcIt  
 **設計基準**：桌機 1440px / 手機 390px  
-**RWD 斷點**：寬度 < 1024px（`@media (max-width: 1023px)`）  
+**RWD 斷點**：全站 section 寬度 < 1024px（`@media (max-width: 1023px)`）；Header 另設寬度 < 1180px（`@media (max-width: 1179px)`，見 T-38）  
 **技術棧**：純 HTML5 + CSS3 + vanilla JS（輪播互動）
 
 ---
 
 ## 進度紀錄
 
-*最後更新：2026-06-30（本對話結束前）*
+*最後更新：2026-07-01（本對話結束前）*
 
 ### ✅ 已完成的 Section
 
 #### 0. Header（導覽列）
-- **對應 HTML**：`<header class="site-header">` → `index.html` 約第 17–76 行
-- **對應 CSS**：`css/style.css` → `1. HEADER / NAVIGATION`；手機樣式 → `@media` Header 區塊
-- **桌機版 ✅**：fixed 白底、高 94px、雙 Logo + 7 項導覽（flex 自適應字寬）
-- **手機版 ✅**：高 57px、漢堡選單 + `mobile-nav` 下拉（`js/main.js`）
+- **對應 HTML**：`<header class="site-header">` → `index.html` 約第 17–118 行
+- **對應 CSS**：`css/style.css` → `1. HEADER / NAVIGATION`；手機樣式 → `4-b. HEADER 手機版（max-width: 1179px）`
+- **桌機版 ✅**：fixed、初始**透明**、捲過 hero **1/3** 後白底＋陰影（`site-header--scrolled`，見 T-39）；高 94px、雙 Logo + 7 項導覽；「歷年活動」為 `<button>` + hover 下拉外連（見 T-41）
+- **手機版 ✅**：1180px 以下高 57px、漢堡選單；「歷年活動」accordion 點擊展開年份（見 T-42）；`mobile-nav.is-open` 高度 `calc(100dvh - 57px)` 可捲動
+- **錨點 ✅**：`scroll-padding-top` = header 高 + 24px（見 T-40）
 
 #### 1. HeroSection（主視覺）
-- **對應 HTML**：`<section id="hero-section" class="hero-section">` → `index.html` 約第 82–118 行
-- **對應 CSS**：`css/style.css` → `2. HERO SECTION`；手機樣式 → `@media` Hero Section 區塊
-- **桌機版 ✅**：全幅背景（`<picture>` + `object-fit: cover`）、5 張 `.hero-deco` 絕對定位裝飾圖、標題群置中
-- **手機版 ✅**：背景改 `hero-bg-mobile.jpg`、`.hero-deco { display: none }`（見 T-2）、主標題改直排 60px、英/中副標改 `<img>`
+- **對應 HTML**：`<section id="hero-section" class="hero-section">` → `index.html` 約第 124–278 行
+- **對應 CSS**：`css/style.css` → `2. HERO SECTION`；手機樣式 → `@media (max-width: 1023px)` Hero Section
+- **桌機版 ✅**：全幅背景（`<picture>` + `object-fit: cover`）、5 張 `.hero-deco` 絕對定位裝飾圖（**無旋轉動畫**，T-56）、標題群可視置中＋`15dvh` 上移（T-48）
+- **手機版 ✅**：背景改 `hero-bg-mobile.jpg`、`.hero-deco { display: none }`（T-2）、主標題改直排 60px、英/中副標改 `<img>`；標題約在可視區上方 14%（T-48）
 - **動畫 ✅**：`.hero-section__title-group` → `data-animate="fadeInDown"`
 
 #### 1-b. 合作校園（嵌於 HeroSection 內）
@@ -37,19 +38,19 @@
 - **對應 HTML**：`<div class="page-container">` → `index.html` 約第 238 行起；包住 about / speaker / forum / report / download / **footer**
 - **對應 CSS**：`css/style.css` → `4. PAGE CONTAINER`（含 `.page-container__bg-wrap`、`.page-container__bg`）
 - **漸層 ✅**：Figma Container `1:866` — `#e5721c` → `#f6d0b3`（16.83%）→ `#ffffff`
-- **bg2 置底 ✅**：`assets/images/container-bg2.png`；`.page-container__bg-wrap` 裁切 transform 溢出（見 T-33、T-34）
+- **bg2 置底 ✅**：`assets/images/container-bg2.png`；桌機自底向上延伸 80px 不漏白（T-49）；手機 JS 自 report 區塊中點起（T-50）；transform 溢出裁切（T-33、T-34）
 
 #### 3. section-about（徐有庠紀念基金會 / 論壇簡介）
-- **對應 HTML**：`<section id="about-section" class="section-about">` → `index.html` 約第 248–285 行
-- **對應 CSS**：`css/style.css` → `5. SECTION ABOUT`；共用元件 → `4. 共用元件`；手機 → `@media` Section About
-- **桌機版 ✅**：左文右影片、`.section-title--light`、`.btn--outline-light`、YouTube 點擊嵌入
-- **手機版 ✅**：上下堆疊、影片高 197px
+- **對應 HTML**：`<section id="about-section" class="section-about">` → `index.html` 約第 292–328 行
+- **對應 CSS**：`css/style.css` → `5. SECTION ABOUT`；手機 → `@media` Section About
+- **桌機版 ✅**：左右 padding 100px（與其他 section 統一，T-44）；文字／影片 **458:604 等比縮放**（T-46）；`.section-title--light`、`.btn--outline-light`、YouTube 點擊嵌入
+- **手機版 ✅**：上下堆疊、影片 `aspect-ratio: 16/9`（T-47）
 - **動畫 ✅**：`.section-about__content` → `data-animate="fadeIn"`
 
 #### 4. section-speaker（講師介紹）
-- **對應 HTML**：`<section id="speaker-section" class="section-speaker">` → `index.html` 約第 288–444 行
+- **對應 HTML**：`<section id="speaker-section" class="section-speaker">` → `index.html` 約第 332–444 行
 - **對應 CSS**：`css/style.css` → `6. SECTION SPEAKER`；手機 → `@media` Section Speaker
-- **桌機版 ✅**：主影片 + 6 slide 輪播（左文右圖）、箭頭 + 12px dots、`deco-student` 裝飾圖
+- **桌機版 ✅**：主影片 + 6 slide 輪播（左文右圖）、箭頭 hover 主色（T-51）、場次外連箭頭 hover 主色（T-53）、12px dots、`deco-student` 平移動畫（T-55）
 - **手機版 ✅**：上圖下文（flex order）、隱藏箭頭、8px dots、touch 拖曳（`js/main.js`）
 - **動畫 ✅**：`.speaker-slider` → `data-animate="fadeIn"`
 - **待補**：slide 2–6 講師內容
@@ -65,8 +66,8 @@
 - **對應 HTML**：`<section id="report-section" class="section-report">` → `index.html` 約第 539–865 行
 - **對應 CSS**：`css/style.css` → `8. SECTION REPORT`；手機 → `@media` Section Report
 - **桌機版 ✅**：彈性 3 欄卡片（`100cqi` 均分）、18 張 `<a class="report-card">` 整卡外連、步進 3 輪播、6 個 page dots（白/半透明，見 T-23）、`deco-nanobot`
-- **手機版 ✅**：單張輪播、dots 隱藏、箭頭移到底部置中、每次步進 1 張、touch 拖曳
-- **互動 ✅**：首尾循環 `loop: true`（見 T-20）；標題 hover 改主色（見 T-22）
+- **手機版 ✅**：單張輪播、dots 隱藏、箭頭移到底部置中（白箭頭、**無 hover／click 變色**，T-52）、每次步進 1 張、touch 拖曳
+- **互動 ✅**：首尾循環 `loop: true`（T-20）；標題 hover 改主色（T-22）；桌機／speaker／forum 輪播箭頭 hover 改主色（T-51）
 - **待補**：各卡真實 `href`、圖片 URL、文案（目前 18 張佔位同結構）
 
 #### 7. section-download（手冊下載）
@@ -86,12 +87,12 @@
 #### 裝飾圖
 | 圖片 | 位置 | 狀態 |
 |------|------|------|
-| `deco-dna-helix` 等 5 張 | `hero-section` `.hero-deco--*` | 桌機 ✅ / 手機隱藏（T-2） |
-| `deco-student.png` | `section-speaker` `.section-deco--student` | 桌機 ✅ / 手機 ✅ |
-| `deco-bionic-limb.png` | `section-forum` `.section-deco--bionic` | 桌機 ✅ / 手機 ✅ |
+| `deco-dna-helix` 等 5 張 | `hero-section` `.hero-deco--*` | 桌機 ✅ / 手機隱藏（T-2）；**無動畫**（T-56） |
+| `deco-student.png` | `section-speaker` `.section-deco--student` | 桌機 ✅ / 手機 ✅；左右平移（T-55） |
+| `deco-bionic-limb.png` | `section-forum` `.section-deco--bionic` | 桌機 ✅ / 手機 ✅；±6° 旋轉（T-55） |
 | `deco-silicon-wafer.png` | `section-forum` `.section-deco--wafer` | 桌機 ✅ / 手機隱藏 |
-| `deco-nanobot.png` | `section-report` `.section-deco--nanobot` | 桌機 ✅ / 手機 ✅ |
-| `container-bg2.png` | `.page-container__bg`（置底） | 桌機 ✅ / 手機 ✅ |
+| `deco-nanobot.png` | `section-report` `.section-deco--nanobot` | 桌機 ✅ / 手機 ✅；±6° 旋轉（T-55） |
+| `container-bg2.png` | `.page-container__bg`（置底） | 桌機 ✅（T-49）/ 手機 ✅（T-50） |
 
 ---
 
@@ -100,8 +101,8 @@
 **主要 section 切版已全部完成**（含合作校園、bg2、footer 移入 Container）。後續建議順序：
 
 1. **內容待補**：speaker / forum slide 2–6、report 18 張卡片各別文案／圖片／外連 URL、正式 PDF 替換佔位檔
-2. **全版 RWD 微調**：跨 section 間距、裝飾圖與 bg2 在不同 viewport 核對
-3. **Footer 連結 URL 確認**（目前為天下學習通用連結佔位）
+2. **URL 統一**：歷年活動桌機／手機兩套佔位外連（T-43）、Footer 連結 URL
+3. **全版 RWD 微調**：1024–1179px 雙斷點區間、裝飾圖與 bg2 在不同 viewport 核對
 
 ---
 
@@ -115,7 +116,7 @@
 | 字重 | `--font-weight-[描述]` | `--font-weight-bold` |
 | 行高 | `--line-height-[層級/px]` | `--line-height-h1`、`--line-height-28-8` |
 | 字距 | `--letter-spacing-[描述]` | `--letter-spacing-wide` |
-| 間距 | `--spacing-[px數字]` | `--spacing-20`、`--spacing-section-x`（170px） |
+| 間距 | `--spacing-[px數字]` | `--spacing-20`、`--spacing-section-x`（100px，原 Figma 170px，見 T-44） |
 | 寬度 | `--width-[區塊/元件]-[描述]` | `--width-section-content`、`--width-download-circle` |
 | 高度 | `--height-[區塊/元件]-[描述]` | `--height-about-video`、`--height-download-stage` |
 | 定位（裝飾圖 / bg2） | `--top/right/left/rotate-deco-[名稱]` | `--left-deco-nanobot-mobile` |
@@ -126,6 +127,10 @@
 | 透明度 | `--opacity-[用途]` | `--opacity-report-dot` |
 | 漸層 / Container | `--color-container-bg-*`、`--container-gradient-stop-mid` | 16.83% |
 | bg2  transform | `--rotate-container-bg2` | `180deg` |
+| bg2 向上延伸 | `--extend-container-bg2-up` | 桌機 80px（T-49） |
+| 圖示 hover 主色 | `--filter-icon-primary` | slider-arrow、speaker-session-list 箭頭（T-51、T-53） |
+| About 欄位比例 | `--ratio-about-text`、`--ratio-about-video` | 458 / 604 等比 flex（T-46） |
+| RWD 斷點 | `--breakpoint-header-mobile*`、`--breakpoint-mobile*` | Header 1179px / 全站 1023px（T-38） |
 | Header 自適應 | `--width-header-*`、`--width-nav-*` | Logo clamp、nav 最小 4.5em 字寬 |
 | Footer | `--padding-footer-bottom*` | 桌機 40px / 手機 30px |
 
@@ -193,6 +198,25 @@
 | T-35 | Footer link hover | 未規定 | `.footer__link:hover` 改 `--color-secondary` | 橘色 bg2 上 primary hover 不易辨識 |
 | T-36 | Download 圓形白底 | 圖片資產 | `.download-visual__circle` 改 **CSS 實心白圓**（非 `download-circle.png`） | 原 PNG 為 90% 透明 SVG，在 bg2 上不可見 |
 | T-37 | 捲動 fadeIn 目標 | 未規定 | 除 hero / school 外，新增 `.section-about__content`、`.speaker-slider`、`.download-visual` | 使用者指定 |
+| T-38 | **RWD 斷點雙軌** | AGENTS：全站單一 `max-width: 1023px` | Header `@media (max-width: 1179px)` 切手機版；About 起各 section 仍 `@media (max-width: 1023px)` | 1024–1179px 區間為「桌機 section + 手機 header」 |
+| T-39 | Header 初始背景 | PLAN 初稿寫 fixed 白底 | 初始 `transparent`；捲過 `#hero-section` 高度 **1/3** 後加 `.site-header--scrolled` | 使用者指定 |
+| T-40 | 錨點捲動偏移 | 未規定 | `html { scroll-padding-top: header 高 + --scroll-anchor-offset (24px) }` | fixed header 不遮擋錨點 |
+| T-41 | 歷年活動（桌機 nav） | nav 項目為 `<a>` | 主項目改 `<button class="nav__link">`，hover／focus-within 展開下拉，**不跳轉錨點** | 使用者指定 |
+| T-42 | 歷年活動（手機 nav） | 未規定 | `.mobile-nav__toggle` accordion；關閉漢堡時子選單收合；`is-open` 選單可捲動 | 手機無 hover |
+| T-43 | 歷年活動外連 URL | — | 桌機 `web.cheers.com.tw/event/...`；手機 `mkt.cw.com.tw/yzhsu20xx/`（**兩套佔位不一致**） | 待統一正式 URL |
+| T-44 | Section 左右 padding | Figma／初版 `--spacing-section-x: 170px` | 改 **100px** | 使用者微調視覺留白 |
+| T-45 | About section padding | 曾用 `clamp(20px, 5vw, section-x)` | 改與其他 section 相同 `padding: 100px section-x` | 統一 section 邊距 |
+| T-46 | About 兩欄寬度 | Figma 固定 458px／604px | `flex: var(--ratio-about-text) 1 0`／`var(--ratio-about-video) 1 0` 等比縮放 | 窄 viewport 不溢出 |
+| T-47 | About／主影片高 | 手機 `--height-about-video-mobile: 197px` | 改 `aspect-ratio: 16/9` 流動高度（token 保留但未使用） | RWD 自適應 |
+| T-48 | Hero 標題垂直位置 | Figma 可視置中 | 桌機 `--hero-title-offset-y: 15dvh` 上移；手機 `--hero-title-mobile-top-ratio: 0.14` | 視覺微調 |
+| T-49 | container-bg2（桌機） | bottom:0 + `aspect-ratio` 定高 | `bottom: 0`；高度 `calc(100vw × 0.965625 + 80px)`（`--extend-container-bg2-up`）自底**向上長** | 上移且不產生底部漏白 |
+| T-50 | container-bg2（手機） | 同桌機全幅置底 | `js/main.js` 依 `#report-section` 內容 **50% 高度**起算 `top`（`--container-bg2-report-start-ratio`） | 手機漸層區段較短 |
+| T-51 | slider-arrow hover | 未規定 | speaker／forum／**桌機 report** hover／focus 箭頭改主色（`--filter-icon-primary`） | 使用者指定 |
+| T-52 | report 手機箭頭互動 | 同 T-51 | **刻意不加** hover／focus／active 效果，維持白箭頭 `invert(1)` | 使用者指定 |
+| T-53 | speaker-session-list hover | 未規定 | `.speaker-session-list__link` hover 箭頭 icon 改主色 filter | 使用者指定 |
+| T-54 | download-visual__btn hover | 未規定 | hover 改 `--color-primary` 底、白字、箭頭 invert 白 | 互動微調 |
+| T-55 | Section 裝飾動畫 | 未規定 | `deco-student` 左右平移；bionic／wafer／nanobot ±6° 旋轉；`prefers-reduced-motion: reduce` 關閉 | 互動微調 |
+| T-56 | Hero deco 動畫 | — | 旋轉動畫**已移除**；僅 section 裝飾圖保留動畫 | 避免 hero 過雜 |
 
 ---
 
