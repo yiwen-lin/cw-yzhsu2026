@@ -281,7 +281,7 @@
   --shadow-nav-dropdown: 0 4px 16px rgba(0, 0, 0, 0.1);
   --height-header-desktop: 94px;
   --height-header-mobile: 57px;
-  --scroll-anchor-offset: var(--spacing-24);
+  --scroll-anchor-offset: var(--spacing-20);
   --height-mobile-nav-sublist-max: 260px;
   --width-header-logo-far-max: 235px;
   --width-header-logo-far-min: 140px;
