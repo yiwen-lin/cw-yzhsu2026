@@ -488,7 +488,7 @@ button.nav__link {
 
 .school-card__name {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-25);
+  font-size: var(--font-size-22);
   font-weight: var(--font-weight-semibold);
   line-height: var(--spacing-30);
 }
