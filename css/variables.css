@@ -121,7 +121,7 @@
 
   /* ── School Card ────────────────────────────────────── */
   --font-family-number: "Plus Jakarta Sans", sans-serif;
-  --font-size-card-date: 48px;
+  --font-size-card-date: 38px;
   --radius-card: 10px;
   --shadow-card: 2px 2px 4px rgba(0, 0, 0, 0.08);
   --shadow-card-dark: 2px 2px 8px rgba(0, 0, 0, 0.08);

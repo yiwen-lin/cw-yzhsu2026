@@ -410,11 +410,12 @@ button.nav__link {
   white-space: nowrap;
 }
 
-/* ── School cards grid（明確 3 欄，避免 flex-wrap 的 sub-pixel 問題） ── */
+/* ── School cards grid（桌機版一行五張，手機版另行覆蓋） ── */
 .school-cards {
   display: grid;
-  grid-template-columns: repeat(3, 320px);
-  gap: var(--spacing-30);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
 }
 
 /* ── School card base ── */
@@ -422,11 +423,11 @@ button.nav__link {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 320px;
+  width: 100%;
   height: 212px;
   border-radius: var(--radius-card);
   flex-shrink: 0;
-  padding: var(--spacing-30) var(--spacing-28);
+  padding: var(--spacing-28) var(--spacing-26);
 }
 
 .school-card--light {
@@ -445,7 +446,7 @@ button.nav__link {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: 150px;
+  height: 160px;
 }
 
 /* ── Date row ── */
@@ -488,7 +489,7 @@ button.nav__link {
 
 .school-card__name {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-22);
+  font-size: var(--font-size-18);
   font-weight: var(--font-weight-semibold);
   line-height: var(--spacing-30);
 }
@@ -2239,10 +2240,10 @@ button.nav__link {
     padding-right: var(--spacing-section-x);
   }
 
-  .school-cards {
+  /* .school-cards {
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
-  }
+  } */
 
   .school-card {
     width: 100%;
